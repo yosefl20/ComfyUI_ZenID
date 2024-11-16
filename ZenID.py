@@ -135,7 +135,7 @@ def _set_model_patch_replace(model, patch_kwargs, key):
     else:
         to["patches_replace"]["attn2"][key].add(instantid_attention, **patch_kwargs)
 
-class InstantIDModelLoader:
+class ZenInstantIDModelLoader:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "instantid_file": (folder_paths.get_filename_list("instantid"), )}}
@@ -200,7 +200,7 @@ def extractFeatures(insightface, image, extract_kps=False):
 
     return out
 
-class InstantIDFaceAnalysis:
+class ZenInstantIDFaceAnalysis:
     @classmethod
     def INPUT_TYPES(s):
         return {
@@ -219,29 +219,6 @@ class InstantIDFaceAnalysis:
 
         return (model,)
 
-class FaceKeypointsPreprocessor:
-    @classmethod
-    def INPUT_TYPES(s):
-        return {
-            "required": {
-                "faceanalysis": ("FACEANALYSIS", ),
-                "image": ("IMAGE", ),
-            },
-        }
-    RETURN_TYPES = ("IMAGE",)
-    FUNCTION = "preprocess_image"
-    CATEGORY = "ZenID"
-
-    def preprocess_image(self, faceanalysis, image):
-        face_kps = extractFeatures(faceanalysis, image, extract_kps=True)
-
-        if face_kps is None:
-            face_kps = torch.zeros_like(image)
-            print(f"\033[33mWARNING: no face detected, unable to extract the keypoints!\033[0m")
-            #raise Exception('Face Keypoints Image: No face detected.')
-
-        return (face_kps,)
-
 def add_noise(image, factor):
     seed = int(torch.sum(image).item()) % 1000000007
     torch.manual_seed(seed)
@@ -251,7 +228,7 @@ def add_noise(image, factor):
 
     return factor*noise
 
-class ApplyInstantID:
+class ApplyZenID:
     @classmethod
     def INPUT_TYPES(s):
         return {
@@ -397,215 +374,15 @@ class ApplyInstantID:
 
         return(work_model, cond_uncond[0], cond_uncond[1], )
 
-class ApplyInstantIDAdvanced(ApplyInstantID):
-    @classmethod
-    def INPUT_TYPES(s):
-        return {
-            "required": {
-                "instantid": ("INSTANTID", ),
-                "insightface": ("FACEANALYSIS", ),
-                "control_net": ("CONTROL_NET", ),
-                "image": ("IMAGE", ),
-                "model": ("MODEL", ),
-                "positive": ("CONDITIONING", ),
-                "negative": ("CONDITIONING", ),
-                "ip_weight": ("FLOAT", {"default": .8, "min": 0.0, "max": 3.0, "step": 0.01, }),
-                "cn_strength": ("FLOAT", {"default": .8, "min": 0.0, "max": 10.0, "step": 0.01, }),
-                "start_at": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 1.0, "step": 0.001, }),
-                "end_at": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.001, }),
-                "noise": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 1.0, "step": 0.1, }),
-                "combine_embeds": (['average', 'norm average', 'concat'], {"default": 'average'}),
-            },
-            "optional": {
-                "image_kps": ("IMAGE",),
-                "mask": ("MASK",),
-            }
-        }
-
-class InstantIDAttentionPatch:
-    @classmethod
-    def INPUT_TYPES(s):
-        return {
-            "required": {
-                "instantid": ("INSTANTID", ),
-                "insightface": ("FACEANALYSIS", ),
-                "image": ("IMAGE", ),
-                "model": ("MODEL", ),
-                "weight": ("FLOAT", {"default": 1.0, "min": -1.0, "max": 3.0, "step": 0.01, }),
-                "start_at": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 1.0, "step": 0.001, }),
-                "end_at": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.001, }),
-                "noise": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 1.0, "step": 0.1, }),
-            },
-            "optional": {
-                "mask": ("MASK",),
-            }
-        }
-
-    RETURN_TYPES = ("MODEL", "FACE_EMBEDS")
-    FUNCTION = "patch_attention"
-    CATEGORY = "ZenID"
-
-    def patch_attention(self, instantid, insightface, image, model, weight, start_at, end_at, noise=0.0, mask=None):
-        self.dtype = torch.float16 if comfy.model_management.should_use_fp16() else torch.float32
-        self.device = comfy.model_management.get_torch_device()
-
-        face_embed = extractFeatures(insightface, image)
-        if face_embed is None:
-            raise Exception('Reference Image: No face detected.')
-
-        clip_embed = face_embed
-        # InstantID works better with averaged embeds (TODO: needs testing)
-        if clip_embed.shape[0] > 1:
-            clip_embed = torch.mean(clip_embed, dim=0).unsqueeze(0)
-
-        if noise > 0:
-            seed = int(torch.sum(clip_embed).item()) % 1000000007
-            torch.manual_seed(seed)
-            clip_embed_zeroed = noise * torch.rand_like(clip_embed)
-        else:
-            clip_embed_zeroed = torch.zeros_like(clip_embed)
-
-        # 1: patch the attention
-        self.instantid = instantid
-        self.instantid.to(self.device, dtype=self.dtype)
-
-        image_prompt_embeds, uncond_image_prompt_embeds = self.instantid.get_image_embeds(clip_embed.to(self.device, dtype=self.dtype), clip_embed_zeroed.to(self.device, dtype=self.dtype))
-
-        image_prompt_embeds = image_prompt_embeds.to(self.device, dtype=self.dtype)
-        uncond_image_prompt_embeds = uncond_image_prompt_embeds.to(self.device, dtype=self.dtype)
-
-        if weight == 0:
-            return (model, { "cond": image_prompt_embeds, "uncond": uncond_image_prompt_embeds } )
-
-        work_model = model.clone()
-
-        sigma_start = model.get_model_object("model_sampling").percent_to_sigma(start_at)
-        sigma_end = model.get_model_object("model_sampling").percent_to_sigma(end_at)
-
-        if mask is not None:
-            mask = mask.to(self.device)
-
-        patch_kwargs = {
-            "weight": weight,
-            "ipadapter": self.instantid,
-            "cond": image_prompt_embeds,
-            "uncond": uncond_image_prompt_embeds,
-            "mask": mask,
-            "sigma_start": sigma_start,
-            "sigma_end": sigma_end,
-        }
-
-        number = 0
-        for id in [4,5,7,8]: # id of input_blocks that have cross attention
-            block_indices = range(2) if id in [4, 5] else range(10) # transformer_depth
-            for index in block_indices:
-                patch_kwargs["module_key"] = str(number*2+1)
-                _set_model_patch_replace(work_model, patch_kwargs, ("input", id, index))
-                number += 1
-        for id in range(6): # id of output_blocks that have cross attention
-            block_indices = range(2) if id in [3, 4, 5] else range(10) # transformer_depth
-            for index in block_indices:
-                patch_kwargs["module_key"] = str(number*2+1)
-                _set_model_patch_replace(work_model, patch_kwargs, ("output", id, index))
-                number += 1
-        for index in range(10):
-            patch_kwargs["module_key"] = str(number*2+1)
-            _set_model_patch_replace(work_model, patch_kwargs, ("middle", 0, index))
-            number += 1
-
-        return(work_model, { "cond": image_prompt_embeds, "uncond": uncond_image_prompt_embeds }, )
-
-class ApplyInstantIDControlNet:
-    @classmethod
-    def INPUT_TYPES(s):
-        return {
-            "required": {
-                "face_embeds": ("FACE_EMBEDS", ),
-                "control_net": ("CONTROL_NET", ),
-                "image_kps": ("IMAGE", ),
-                "positive": ("CONDITIONING", ),
-                "negative": ("CONDITIONING", ),
-                "strength": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 10.0, "step": 0.01, }),
-                "start_at": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 1.0, "step": 0.001, }),
-                "end_at": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.001, }),
-            },
-            "optional": {
-                "mask": ("MASK",),
-            }
-        }
-
-    RETURN_TYPES = ("CONDITIONING", "CONDITIONING",)
-    RETURN_NAMES = ("positive", "negative", )
-    FUNCTION = "apply_controlnet"
-    CATEGORY = "ZenID"
-
-    def apply_controlnet(self, face_embeds, control_net, image_kps, positive, negative, strength, start_at, end_at, mask=None):
-        self.device = comfy.model_management.get_torch_device()
-
-        if strength == 0:
-            return (positive, negative)
-
-        if mask is not None:
-            mask = mask.to(self.device)
-
-        if mask is not None and len(mask.shape) < 3:
-            mask = mask.unsqueeze(0)
-
-        image_prompt_embeds = face_embeds['cond']
-        uncond_image_prompt_embeds = face_embeds['uncond']
-
-        cnets = {}
-        cond_uncond = []
-        control_hint = image_kps.movedim(-1,1)
-
-        is_cond = True
-        for conditioning in [positive, negative]:
-            c = []
-            for t in conditioning:
-                d = t[1].copy()
-
-                prev_cnet = d.get('control', None)
-                if prev_cnet in cnets:
-                    c_net = cnets[prev_cnet]
-                else:
-                    c_net = control_net.copy().set_cond_hint(control_hint, strength, (start_at, end_at))
-                    c_net.set_previous_controlnet(prev_cnet)
-                    cnets[prev_cnet] = c_net
-
-                d['control'] = c_net
-                d['control_apply_to_uncond'] = False
-                d['cross_attn_controlnet'] = image_prompt_embeds.to(comfy.model_management.intermediate_device()) if is_cond else uncond_image_prompt_embeds.to(comfy.model_management.intermediate_device())
-
-                if mask is not None and is_cond:
-                    d['mask'] = mask
-                    d['set_area_to_bounds'] = False
-
-                n = [t[0], d]
-                c.append(n)
-            cond_uncond.append(c)
-            is_cond = False
-
-        return(cond_uncond[0], cond_uncond[1])
-
 
 NODE_CLASS_MAPPINGS = {
-    "InstantIDModelLoader": InstantIDModelLoader,
-    "InstantIDFaceAnalysis": InstantIDFaceAnalysis,
-    "ApplyInstantID": ApplyInstantID,
-    "ApplyInstantIDAdvanced": ApplyInstantIDAdvanced,
-    "FaceKeypointsPreprocessor": FaceKeypointsPreprocessor,
-
-    "InstantIDAttentionPatch": InstantIDAttentionPatch,
-    "ApplyInstantIDControlNet": ApplyInstantIDControlNet,
+    "InstantIDModelLoader": ZenInstantIDModelLoader,
+    "InstantIDFaceAnalysis": ZenInstantIDFaceAnalysis,
+    "ApplyZenID": ApplyZenID,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
     "InstantIDModelLoader": "Load InstantID Model",
     "InstantIDFaceAnalysis": "InstantID Face Analysis",
-    "ApplyInstantID": "ZenID FaceSwap",
-    "ApplyInstantIDAdvanced": "Apply InstantID Advanced",
-    "FaceKeypointsPreprocessor": "Face Keypoints Preprocessor",
-
-    "InstantIDAttentionPatch": "InstantID Patch Attention",
-    "ApplyInstantIDControlNet": "InstantID Apply ControlNet",
+    "ApplyZenID": "ZenID FaceSwap",
 }
