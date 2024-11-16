@@ -245,11 +245,12 @@ class ApplyZenID:
                 "weight": ("FLOAT", {"default": .8, "min": 0.0, "max": 5.0, "step": 0.01, }),
                 "start_at": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 1.0, "step": 0.001, }),
                 "end_at": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.001, }),
+                "blur_kernel": ("INT", {"default": 21, "min": 1, "max": 101, "step": 2, }),
             },
         }
 
-    RETURN_TYPES = ("MODEL", "CONDITIONING", "CONDITIONING","LATENT", )
-    RETURN_NAMES = ("MODEL", "positive", "negative", "latent")
+    RETURN_TYPES = ("MODEL", "CONDITIONING", "CONDITIONING","LATENT", "MASK")
+    RETURN_NAMES = ("MODEL", "positive", "negative", "latent", "mask")
     FUNCTION = "apply_instantid"
     CATEGORY = "ZenID"
 
@@ -292,24 +293,25 @@ class ApplyZenID:
             out.append(c)
         return out[0], out[1], out_latent
     
-    def prepare_mask(self, insightface, image):
+    def prepare_mask(self, insightface, image, blur_kernel):
         image = tensor_to_image(image)
         insightface.det_model.input_size = (640,640)
 
-        face = insightface.get(image)
-        if face:
-            face = sorted(face, key=lambda x:(x['bbox'][2]-x['bbox'][0])*(x['bbox'][3]-x['bbox'][1]))[-1]
-            mask = np.zeros((image.shape[0], image.shape[1]))
-            mask[face['bbox'][1]:face['bbox'][3], face['bbox'][0]:face['bbox'][2]] = 1
-            mask = torch.from_numpy(mask).unsqueeze(0).float()
-            return mask
-        else:
-            return None
+        face = insightface.get(image[0])
+        face = sorted(face, key=lambda x:(x['bbox'][2]-x['bbox'][0])*(x['bbox'][3]-x['bbox'][1]))[-1]
 
-    def apply_instantid(self, instantid, insightface, control_net, model, clip, vae, image_source, image_face, start_at, end_at, weight=.8, ip_weight=None, cn_strength=None, noise=0.35, image_kps=None, mask=None, combine_embeds='average'):
+        mask = np.zeros((image.shape[1], image.shape[2]))
+        x1, y1, x2, y2 = face['bbox']
+        x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
+        mask[y1:y2, x1:x2] = 1
+        mask =cv2.GaussianBlur(mask, (blur_kernel, blur_kernel), 0)
+        mask = torch.from_numpy(mask).unsqueeze(0).float()
+        return mask
+
+    def apply_instantid(self, instantid, insightface, control_net, model, clip, vae, image_source, image_face, start_at, end_at, weight=.8,blur_kernel = 21, ip_weight=None, cn_strength=None, noise=0.35, image_kps=None, mask=None, combine_embeds='average'):
         #define positive and negative
-        positive = "realistic"
-        negative = "deformer"
+        positive = " "
+        negative = "(lowres, low quality, worst quality:1.2), (text:1.2), watermark, painting, drawing, illustration, glitch, deformed, mutated, cross-eyed, ugly, disfigured (lowres, low quality, worst quality:1.2), (text:1.2), watermark, painting, drawing, illustration, glitch,deformed, mutated, cross-eyed, ugly, disfigured"
         image = image_face
 
         #Encode prompt
@@ -317,7 +319,7 @@ class ApplyZenID:
         negative = self.encode_prompt(clip, negative)
 
         #Prepare mask
-        mask = self.prepare_mask(insightface, image_source) if mask is None else mask
+        mask = self.prepare_mask(insightface, image_source, blur_kernel) if mask is None else mask
 
         #Prepare conditioning for inpainting
         positive, negative, latent = self.prepare_condition_inpainting(positive, negative, image_source, vae, mask)
@@ -438,7 +440,7 @@ class ApplyZenID:
             cond_uncond.append(c)
             is_cond = False
 
-        return(work_model, cond_uncond[0], cond_uncond[1], latent)
+        return(work_model, cond_uncond[0], cond_uncond[1], latent, mask)
 
 
 NODE_CLASS_MAPPINGS = {
