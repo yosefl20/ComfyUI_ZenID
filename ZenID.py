@@ -18,7 +18,7 @@ except ImportError:
     import torchvision.transforms as T
 
 import torch.nn.functional as F
-import node_tools as node_helpers
+from . import node_tools as node_helpers
 
 MODELS_DIR = os.path.join(folder_paths.models_dir, "instantid")
 if "instantid" not in folder_paths.folder_names_and_paths:
@@ -257,7 +257,7 @@ class ApplyZenID:
         tokens = clip.tokenize(text)
         output = clip.encode_from_tokens(tokens, return_pooled=True, return_dict=True)
         cond = output.pop("cond")
-        return ([[cond, output]], )
+        return [[cond, output]]
     
     def prepare_condition_inpainting(self, positive, negative, pixels, vae, mask):
         x = (pixels.shape[1] // 8) * 8
@@ -290,7 +290,21 @@ class ApplyZenID:
             c = node_helpers.conditioning_set_values(conditioning, {"concat_latent_image": concat_latent,
                                                                     "concat_mask": mask})
             out.append(c)
-        return (out[0], out[1], out_latent)
+        return out[0], out[1], out_latent
+    
+    def prepare_mask(self, insightface, image):
+        image = tensor_to_image(image)
+        insightface.det_model.input_size = (640,640)
+
+        face = insightface.get(image)
+        if face:
+            face = sorted(face, key=lambda x:(x['bbox'][2]-x['bbox'][0])*(x['bbox'][3]-x['bbox'][1]))[-1]
+            mask = np.zeros((image.shape[0], image.shape[1]))
+            mask[face['bbox'][1]:face['bbox'][3], face['bbox'][0]:face['bbox'][2]] = 1
+            mask = torch.from_numpy(mask).unsqueeze(0).float()
+            return mask
+        else:
+            return None
 
     def apply_instantid(self, instantid, insightface, control_net, model, clip, vae, image_source, image_face, start_at, end_at, weight=.8, ip_weight=None, cn_strength=None, noise=0.35, image_kps=None, mask=None, combine_embeds='average'):
         #define positive and negative
@@ -301,6 +315,9 @@ class ApplyZenID:
         #Encode prompt
         positive = self.encode_prompt(clip, positive)
         negative = self.encode_prompt(clip, negative)
+
+        #Prepare mask
+        mask = self.prepare_mask(insightface, image_source) if mask is None else mask
 
         #Prepare conditioning for inpainting
         positive, negative, latent = self.prepare_condition_inpainting(positive, negative, image_source, vae, mask)
@@ -320,7 +337,7 @@ class ApplyZenID:
             raise Exception('Reference Image: No face detected.')
 
         # if no keypoints image is provided, use the image itself (only the first one in the batch)
-        face_kps = extractFeatures(insightface, image_kps if image_kps is not None else image[0].unsqueeze(0), extract_kps=True)
+        face_kps = extractFeatures(insightface, image_kps if image_kps is not None else image_source[0].unsqueeze(0), extract_kps=True)
 
         if face_kps is None:
             face_kps = torch.zeros_like(image) if image_kps is None else image_kps
