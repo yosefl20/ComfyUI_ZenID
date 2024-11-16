@@ -18,6 +18,7 @@ except ImportError:
     import torchvision.transforms as T
 
 import torch.nn.functional as F
+import comfy.node_helpers as node_helpers
 
 MODELS_DIR = os.path.join(folder_paths.models_dir, "instantid")
 if "instantid" not in folder_paths.folder_names_and_paths:
@@ -236,26 +237,74 @@ class ApplyZenID:
                 "instantid": ("INSTANTID", ),
                 "insightface": ("FACEANALYSIS", ),
                 "control_net": ("CONTROL_NET", ),
-                "image": ("IMAGE", ),
                 "model": ("MODEL", ),
-                "positive": ("CONDITIONING", ),
-                "negative": ("CONDITIONING", ),
+                "clip": ("CLIP", ),
+                "vae": ("VAE", ),
+                "image_source": ("IMAGE", ),
+                "image_face" : ("IMAGE", ),
                 "weight": ("FLOAT", {"default": .8, "min": 0.0, "max": 5.0, "step": 0.01, }),
                 "start_at": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 1.0, "step": 0.001, }),
                 "end_at": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.001, }),
             },
-            "optional": {
-                "image_kps": ("IMAGE",),
-                "mask": ("MASK",),
-            }
         }
 
-    RETURN_TYPES = ("MODEL", "CONDITIONING", "CONDITIONING",)
-    RETURN_NAMES = ("MODEL", "positive", "negative", )
+    RETURN_TYPES = ("MODEL", "CONDITIONING", "CONDITIONING","LATENT", )
+    RETURN_NAMES = ("MODEL", "positive", "negative", "latent")
     FUNCTION = "apply_instantid"
     CATEGORY = "ZenID"
 
-    def apply_instantid(self, instantid, insightface, control_net, image, model, positive, negative, start_at, end_at, weight=.8, ip_weight=None, cn_strength=None, noise=0.35, image_kps=None, mask=None, combine_embeds='average'):
+    def encode_prompt(self, clip, text):
+        tokens = clip.tokenize(text)
+        output = clip.encode_from_tokens(tokens, return_pooled=True, return_dict=True)
+        cond = output.pop("cond")
+        return ([[cond, output]], )
+    
+    def prepare_condition_inpainting(self, positive, negative, pixels, vae, mask):
+        x = (pixels.shape[1] // 8) * 8
+        y = (pixels.shape[2] // 8) * 8
+        mask = torch.nn.functional.interpolate(mask.reshape((-1, 1, mask.shape[-2], mask.shape[-1])), size=(pixels.shape[1], pixels.shape[2]), mode="bilinear")
+
+        orig_pixels = pixels
+        pixels = orig_pixels.clone()
+        if pixels.shape[1] != x or pixels.shape[2] != y:
+            x_offset = (pixels.shape[1] % 8) // 2
+            y_offset = (pixels.shape[2] % 8) // 2
+            pixels = pixels[:,x_offset:x + x_offset, y_offset:y + y_offset,:]
+            mask = mask[:,:,x_offset:x + x_offset, y_offset:y + y_offset]
+
+        m = (1.0 - mask.round()).squeeze(1)
+        for i in range(3):
+            pixels[:,:,:,i] -= 0.5
+            pixels[:,:,:,i] *= m
+            pixels[:,:,:,i] += 0.5
+        concat_latent = vae.encode(pixels)
+        orig_latent = vae.encode(orig_pixels)
+
+        out_latent = {}
+
+        out_latent["samples"] = orig_latent
+        out_latent["noise_mask"] = mask
+
+        out = []
+        for conditioning in [positive, negative]:
+            c = node_helpers.conditioning_set_values(conditioning, {"concat_latent_image": concat_latent,
+                                                                    "concat_mask": mask})
+            out.append(c)
+        return (out[0], out[1], out_latent)
+
+    def apply_instantid(self, instantid, insightface, control_net, model, clip, vae, image_source, image_face, start_at, end_at, weight=.8, ip_weight=None, cn_strength=None, noise=0.35, image_kps=None, mask=None, combine_embeds='average'):
+        #define positive and negative
+        positive = "realistic"
+        negative = "deformer"
+        image = image_face
+
+        #Encode prompt
+        positive = self.encode_prompt(clip, positive)
+        negative = self.encode_prompt(clip, negative)
+
+        #Prepare conditioning for inpainting
+        positive, negative, latent = self.prepare_condition_inpainting(positive, negative, image_source, vae, mask)
+ 
         dtype = comfy.model_management.unet_dtype()
         if dtype not in [torch.float32, torch.float16, torch.bfloat16]:
             dtype = torch.float16 if comfy.model_management.should_use_fp16() else torch.float32
@@ -372,7 +421,7 @@ class ApplyZenID:
             cond_uncond.append(c)
             is_cond = False
 
-        return(work_model, cond_uncond[0], cond_uncond[1], )
+        return(work_model, cond_uncond[0], cond_uncond[1], latent)
 
 
 NODE_CLASS_MAPPINGS = {
