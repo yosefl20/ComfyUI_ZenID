@@ -18,7 +18,7 @@ except ImportError:
     import torchvision.transforms as T
 
 import torch.nn.functional as F
-import comfy.node_helpers as node_helpers
+import node_tools as node_helpers
 
 MODELS_DIR = os.path.join(folder_paths.models_dir, "instantid")
 if "instantid" not in folder_paths.folder_names_and_paths:
