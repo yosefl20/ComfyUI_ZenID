@@ -308,7 +308,7 @@ class ApplyZenID:
         mask = torch.from_numpy(mask).unsqueeze(0).float()
         return mask
 
-    def apply_instantid(self, instantid, insightface, control_net, model, clip, vae, image_source, image_face, start_at, end_at, weight=.8,blur_kernel = 21, ip_weight=None, cn_strength=None, noise=0.35, image_kps=None, mask=None, combine_embeds='average'):
+    def apply_instantid(self, instantid, insightface, control_net, model, clip, vae, image_source, image_face, start_at, end_at, weight=.8,blur_kernel = 51, ip_weight=None, cn_strength=None, noise=0.35, image_kps=None, mask=None, combine_embeds='average'):
         #define positive and negative
         positive = " "
         negative = "(lowres, low quality, worst quality:1.2), (text:1.2), watermark, painting, drawing, illustration, glitch, deformed, mutated, cross-eyed, ugly, disfigured (lowres, low quality, worst quality:1.2), (text:1.2), watermark, painting, drawing, illustration, glitch,deformed, mutated, cross-eyed, ugly, disfigured"
