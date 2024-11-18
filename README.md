@@ -1,12 +1,11 @@
-# ZenID: Face Swap
-
+# 🌟 ZenID: Face Swap 🌟
 Inspired by [**InstantID**](https://github.com/instantX-research/InstantID) and [**InstantID Comfy**](https://github.com/cubiq/ComfyUI_InstantID)
 
 This **ZenID Node** has been refactored for specialized tasks like _Face Swap_
 
-🌟 **Give this project a star 🌟 and follow to support further development!**
+**✨ Support further development by starring the project! ✨**
 
-## **Table of Contents** 
+## 📑 **Table of Contents** 
 1. [Updates](#updates) 
 2. [ZenID Features](#zenid-features) 
     * [Face Swap](#zenid-face-swap) 
@@ -17,7 +16,7 @@ This **ZenID Node** has been refactored for specialized tasks like _Face Swap_
 * **2024/11/16**: Added the **_Face Combine_** feature. 
 * **2024/11/18**: Released the new **_Face Swap_** functionality.
 
-## 🎨 **ZenID Features** <a name="zenid-features"></a>
+## 🌟 **ZenID Features** <a name="zenid-features"></a>
 
 ### 🔗 **ZenID Face Swap** <a name="zenid-face-swap"></a>
 - **Workflows**
@@ -61,6 +60,8 @@ git clone https://github.com/vuongminh1907/ComfyUI_ZenID
 python ComfyUI_ZenID/downloadmodel.py
 ```
 4. Run ComfyUI 
+
+
 
 
 🎉 Enjoy creating with ZenID! Let us know your feedback or suggestions.
