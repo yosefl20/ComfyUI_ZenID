@@ -47,7 +47,20 @@ This **ZenID Node** has been refactored for specialized tasks like _Face Swap_
        <img src="https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/result_facecombine.png" width="600" />
 
 ## ⚙️ Installation <a name="installation"></a>
-
+1. Upgrade ComfyUI to the latest version.
+```
+git clone https://github.com/comfyanonymous/ComfyUI
+```
+2. Clone or download this repository into the `ComfyUI/custom_nodes/` directory.
+```
+cd ComfyUI/custom_nodes/
+git clone https://github.com/vuongminh1907/ComfyUI_ZenID
+```
+3. Download the model
+```
+python ComfyUI_ZenID/downloadmodel.py
+```
+4. Run ComfyUI 
 
 
 🎉 Enjoy creating with ZenID! Let us know your feedback or suggestions.
