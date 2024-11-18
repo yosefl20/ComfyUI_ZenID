@@ -25,12 +25,6 @@ This **ZenID Node** has been refactored for specialized tasks like _Face Swap_
     ![ZenID Face Swap Example](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/zenid_faceswap.png)
 
 - **Examples**
-    - **Source Images**  
-      ![Source Image 1](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/haitu.jpg)  
-      ![Source Image 2](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/sontung.jpg)  
-
-    - **Result Image**  
-      ![Result Image](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/result_facecombine.png)
 
 
 ### 🔗 **ZenID Face Combine** <a name="zenid-face-swap"></a>
@@ -40,8 +34,8 @@ This **ZenID Node** has been refactored for specialized tasks like _Face Swap_
     ![ZenID Face Combine Example](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/zenid_combineface.png)
 - **Examples**
     - **Source Images**  
-      ![Source Image 1](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/haitu.jpg)  
-      ![Source Image 2](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/sontung.jpg)  
+      | ![Source Image 1](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/haitu.jpg) | ![Source Image 2](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/sontung.jpg) |
+  | --- | --- |
 
     - **Result Image**  
       ![Result Image](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/result_facecombine.png)
