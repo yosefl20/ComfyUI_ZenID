@@ -21,17 +21,30 @@ This **ZenID Node** has been refactored for specialized tasks like _Face Swap_
 
 ### 🔗 **ZenID Face Swap** <a name="zenid-face-swap"></a>
 - **Workflows**
-
     Sample [`ZenID_FaceSwap.json`](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/workflow/ZenID_FaceSwap.json) are included in the `workflow` folder.
+    ![ZenID Face Swap Example](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/zenid_faceswap.png)
 
 - **Examples**
+    - **Source Images**  
+      ![Source Image 1](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/haitu.jpg)  
+      ![Source Image 2](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/sontung.jpg)  
+
+    - **Result Image**  
+      ![Result Image](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/result_facecombine.png)
+
 
 ### 🔗 **ZenID Face Combine** <a name="zenid-face-swap"></a>
 - **Workflows**
 
     Sample [`ZenID_combineFace.json`](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/workflow/ZenID_combineFace.json) are included in the `workflow` folder.
-    ![ZenID Face Swap Example](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/zenid_faceswap.png)
+    ![ZenID Face Combine Example](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/zenid_combineface.png)
 - **Examples**
+    - **Source Images**  
+      ![Source Image 1](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/haitu.jpg)  
+      ![Source Image 2](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/sontung.jpg)  
+
+    - **Result Image**  
+      ![Result Image](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/result_facecombine.png)
 
 ## ⚙️ Installation <a name="installation"></a>
 
