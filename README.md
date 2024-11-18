@@ -34,11 +34,11 @@ This **ZenID Node** has been refactored for specialized tasks like _Face Swap_
     ![ZenID Face Combine Example](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/zenid_combineface.png)
 - **Examples**
     - **Source Images**  
-      <img src="https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/haitu.jpg" width="200" /> 
-      <img src="https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/sontung.jpg" width="200" />
+      <img src="https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/haitu.jpg" width="400" /> 
+      <img src="https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/sontung.jpg" width="400" />
 
     - **Result Image**  
-      ![Result Image](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/result_facecombine.png)
+       <img src="https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/result_facecombine.png" width="600" />
 
 ## ⚙️ Installation <a name="installation"></a>
 
