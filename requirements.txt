@@ -1,3 +1,5 @@
 insightface
 onnxruntime
+huggingface_hub
+gdown
 onnxruntime-gpu; sys_platform != 'darwin' and platform_machine == 'x86_64'
