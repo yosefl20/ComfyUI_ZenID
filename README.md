@@ -13,8 +13,9 @@ This **ZenID Node** has been refactored for specialized tasks like _Face Swap_
 3. [Installation](#installation)
 
 ## 📅 **Updates** <a name="updates"></a> 
-* **2024/11/16**: Added the **_Face Combine_** feature. 
+* **2024/11/19**: Cập nhật README Tiếng Việt [READMEVN](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/README_VN.md)
 * **2024/11/18**: Released the new **_Face Swap_** functionality.
+* **2024/11/16**: Added the **_Face Combine_** feature. 
 
 ## 🌟 **ZenID Features** <a name="zenid-features"></a>
 
