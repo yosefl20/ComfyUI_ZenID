@@ -62,7 +62,13 @@ python ComfyUI_ZenID/downloadmodel.py
 ```
 4. Run ComfyUI 
 
+## Contact for Work 🌟
 
+This is a demo Face Swap product by ZenAI.  
+![ZenID Logo](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/zenai.png)
 
+If you need a more polished and enhanced version, please contact us through:  
+- 📱 **Facebook Page**: [ZenAI](https://web.facebook.com/zenai.vn)  
+- ☎️ **Phone**: 0971912713 Miss. Chi  
 
 🎉 Enjoy creating with ZenID! Let us know your feedback or suggestions.
