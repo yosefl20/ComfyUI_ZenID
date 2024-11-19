@@ -18,7 +18,9 @@ Repo này được lấy cảm hứng và modify từ [**InstantID**](https://gi
     File mẫu [`ZenID_FaceSwap.json`](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/workflow/ZenID_FaceSwap.json) được đính kèm trong thư mục `workflow`.
 
     Ở bước này, bạn có thể dùng mask tự vẽ hoặc để cho nodes tự sinh ra mask để swap
+
     **NOTE: Dùng tay tự vẽ mask thì kết quả đẹp hơn**
+
     ![ZenID Face Swap Example](https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/zenid_faceswap.png)
 
 - **Ví Dụ**
