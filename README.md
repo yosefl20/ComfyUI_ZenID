@@ -58,6 +58,7 @@ git clone https://github.com/vuongminh1907/ComfyUI_ZenID
 ```
 3. Download the model
 ```
+pip install -r ComfyUI_ZenID/requirements.txt
 python ComfyUI_ZenID/downloadmodel.py
 ```
 4. Run ComfyUI 
