@@ -1,4 +1,4 @@
-from huggingface_hub import hf_hub_download
+from huggingface_hub import hf_hub_download, snapshot_download
 import gdown
 import os
 
@@ -21,6 +21,10 @@ hf_hub_download(
 )
 
 os.makedirs("../models/insightface/", exist_ok=True)
-gdown.download(url="https://drive.google.com/file/d/18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8/view?usp=sharing", output="./models/", quiet=False, fuzzy=True)
 
-os.system("unzip ../models/insightface/models/antelopev2.zip -d ./models/")
+snapshot_download(
+    repo_id="vuongminhkhoi4/antelopev2",
+    cache_dir ="models",
+    local_dir="../models/insightface",
+)
+
