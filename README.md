@@ -72,8 +72,6 @@ If you need a more polished and enhanced version, please contact us through:
 - 📱 **Facebook Page**: [ZenAI](https://web.facebook.com/zenai.vn)  
 - ☎️ **Phone**: 0971912713 Miss. Chi  
 
-🎉 Enjoy creating with ZenID! Let us know your feedback or suggestions.
-
 ## 📺 Social Network
 
 Check out tutorials, demos, and updates on community's social media channels
@@ -84,5 +82,7 @@ Check out tutorials, demos, and updates on community's social media channels
 <img src="https://upload.wikimedia.org/wikipedia/vi/thumb/1/1b/Bi%E1%BB%83u_tr%C6%B0ng_Bilibili.svg/239px-Bi%E1%BB%83u_tr%C6%B0ng_Bilibili.svg.png" width="40"> [这个插件能搞米！双人照预测孩子长相](https://www.bilibili.com/video/BV1muUtYnEqs/?spm_id_from=333.788.videopod.sections&vd_source=165d5f2dd4fb3d3dec1ffdc609c7f4d6&fbclid=IwZXh0bgNhZW0CMTAAAR1fxwVuECesmANgrEt20nXwhOlItGCbzyGAK3xJU3Gx4TOumqwzzpwdE2E_aem_CdQ3mG_P_X5d78ZnMV1JdQ)
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/900px-2023_Facebook_icon.svg.png" width="20">          [FACEBOOK](https://www.facebook.com/groups/2402371183273100/posts/swap-face-ch%E1%BB%89-v%E1%BB%9Bi-m%E1%BB%99t-node-l%E1%BA%A5y-c%E1%BA%A3m-h%E1%BB%A9ng-t%E1%BB%AB-instantid-zenid-%C4%91%C6%B0%E1%BB%A3c-t%E1%BA%A1o-ra-ch%E1%BB%89-v%E1%BB%9Bi-v/2866596150183932/?_rdr)
+
+🎉 Enjoy creating with ZenID! Let us know your feedback or suggestions.
 
 
