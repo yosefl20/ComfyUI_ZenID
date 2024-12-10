@@ -73,3 +73,10 @@ If you need a more polished and enhanced version, please contact us through:
 - ☎️ **Phone**: 0971912713 Miss. Chi  
 
 🎉 Enjoy creating with ZenID! Let us know your feedback or suggestions.
+
+## 📺 Refer to YouTube
+
+Check out tutorials, demos, and updates on YouTube channel:  
+[<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" width="40">](https://www.youtube.com/watch?v=UnFK-SjkIS0&t=1s)
+
+
