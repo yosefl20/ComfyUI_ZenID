@@ -74,9 +74,12 @@ If you need a more polished and enhanced version, please contact us through:
 
 🎉 Enjoy creating with ZenID! Let us know your feedback or suggestions.
 
-## 📺 Refer to YouTube
+## 📺 Social Network
 
-Check out tutorials, demos, and updates on YouTube channel:  
+Check out tutorials, demos, and updates on YouTube channel: 
+
 [<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" width="20">](https://www.youtube.com/watch?v=UnFK-SjkIS0&t=1s) [ZenID Face Swap｜Generate different ages｜｜ComfyUI｜Workflow Download Installation Setup Tutorial](https://www.youtube.com/watch?v=UnFK-SjkIS0&t=1s)
+
+[<img src="https://photo2.tinhte.vn/data/attachment-files/2023/12/8205345_11125ffd0a94c5d0a5d3a4c6d3d111ed.jpg" width="20">] [这个插件能搞米！双人照预测孩子长相](https://www.bilibili.com/video/BV1muUtYnEqs/?spm_id_from=333.788.videopod.sections&vd_source=165d5f2dd4fb3d3dec1ffdc609c7f4d6&fbclid=IwZXh0bgNhZW0CMTAAAR1fxwVuECesmANgrEt20nXwhOlItGCbzyGAK3xJU3Gx4TOumqwzzpwdE2E_aem_CdQ3mG_P_X5d78ZnMV1JdQ)
 
 
