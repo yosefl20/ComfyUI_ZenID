@@ -68,7 +68,7 @@ python ComfyUI_ZenID/downloadmodel.py
 This is a demo Face Swap product by ZenAI.  
 <img src="https://github.com/vuongminh1907/ComfyUI_ZenID/blob/main/examples/zenai.png" width="400" />
 
-If you need a more polished and enhanced version, please contact us through:  
+If you need more polished and enhanced version, please contact us through:  
 - 📱 **Facebook Page**: [ZenAI](https://web.facebook.com/zenai.vn)  
 - ☎️ **Phone**: 0971912713 Miss. Chi  
 
