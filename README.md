@@ -76,7 +76,7 @@ If you need more polished and enhanced version, please contact us through:
 
 Check out tutorials, demos, and updates on community's social media channels
 
-### <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" width="40">[YOUTUBE]
+### <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" width="30">[YOUTUBE]
 
 1. [ZenID Face Swap｜Generate different ages｜｜ComfyUI｜Workflow Download Installation Setup Tutorial](https://www.youtube.com/watch?v=UnFK-SjkIS0&t=1s)
 
@@ -97,7 +97,7 @@ Check out tutorials, demos, and updates on community's social media channels
 
 6. [ComfyUI_ZenID：预测孩子长相（面部融合）工作流整合包，还能指定年龄以及调整更偏向哪一方的长相](https://www.bilibili.com/video/BV1ayqZYUECB/)
 
-### <img src="https://cdn.pixabay.com/photo/2021/06/15/12/28/tiktok-6338429_1280.png" width="40">[Douyin]
+### <img src="https://cdn.pixabay.com/photo/2021/06/15/12/28/tiktok-6338429_1280.png" width="30">[DOUYIN]
 
 1. [设计师学Ai（回归）](https://www.douyin.com/video/7450052025175248162)
 
