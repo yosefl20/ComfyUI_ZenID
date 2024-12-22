@@ -101,9 +101,9 @@ Check out tutorials, demos, and updates on community's social media channels
 
 1. [设计师学Ai（回归）](https://www.douyin.com/video/7450052025175248162)
 
-2. [Danny](https://www.douyin.com/video/7450052025175248162)
+2. [Danny](https://www.douyin.com/video/7448537507790114060)
 
-3. [吴杨峰](https://www.douyin.com/video/7450052025175248162)
+3. [AI—绘画师](https://www.douyin.com/video/7450882731820584232)
 
 ### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/900px-2023_Facebook_icon.svg.png" width="30"> FACEBOOK
 1. [Stable Diffusion Viet Nam](https://www.facebook.com/groups/2402371183273100/posts/swap-face-ch%E1%BB%89-v%E1%BB%9Bi-m%E1%BB%99t-node-l%E1%BA%A5y-c%E1%BA%A3m-h%E1%BB%A9ng-t%E1%BB%AB-instantid-zenid-%C4%91%C6%B0%E1%BB%A3c-t%E1%BA%A1o-ra-ch%E1%BB%89-v%E1%BB%9Bi-v/2866596150183932/?_rdr)
