@@ -76,12 +76,54 @@ If you need more polished and enhanced version, please contact us through:
 
 Check out tutorials, demos, and updates on community's social media channels
 
-[<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" width="20">](https://www.youtube.com/watch?v=UnFK-SjkIS0&t=1s)       [ZenID Face Swap｜Generate different ages｜｜ComfyUI｜Workflow Download Installation Setup Tutorial](https://www.youtube.com/watch?v=UnFK-SjkIS0&t=1s)
+### <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png" width="40">[YOUTUBE]
+
+1. [ZenID Face Swap｜Generate different ages｜｜ComfyUI｜Workflow Download Installation Setup Tutorial](https://www.youtube.com/watch?v=UnFK-SjkIS0&t=1s)
+
+2. [一个不正经的换脸节点ZenID，居然那么好玩！？FaceAging平替！还可以预测孩子长相哦](https://www.youtube.com/watch?v=d3NMFWHVEiw&t=183s)
+
+###  <img src="https://upload.wikimedia.org/wikipedia/vi/thumb/1/1b/Bi%E1%BB%83u_tr%C6%B0ng_Bilibili.svg/239px-Bi%E1%BB%83u_tr%C6%B0ng_Bilibili.svg.png" width="40">[Bilibili]
 
 
-<img src="https://upload.wikimedia.org/wikipedia/vi/thumb/1/1b/Bi%E1%BB%83u_tr%C6%B0ng_Bilibili.svg/239px-Bi%E1%BB%83u_tr%C6%B0ng_Bilibili.svg.png" width="40"> [这个插件能搞米！双人照预测孩子长相](https://www.bilibili.com/video/BV1muUtYnEqs/?spm_id_from=333.788.videopod.sections&vd_source=165d5f2dd4fb3d3dec1ffdc609c7f4d6&fbclid=IwZXh0bgNhZW0CMTAAAR1fxwVuECesmANgrEt20nXwhOlItGCbzyGAK3xJU3Gx4TOumqwzzpwdE2E_aem_CdQ3mG_P_X5d78ZnMV1JdQ)
+1. [这个插件能搞米！双人照预测孩子长相](https://www.bilibili.com/video/BV1muUtYnEqs/?spm_id_from=333.788.videopod.sections&vd_source=165d5f2dd4fb3d3dec1ffdc609c7f4d6&fbclid=IwZXh0bgNhZW0CMTAAAR1fxwVuECesmANgrEt20nXwhOlItGCbzyGAK3xJU3Gx4TOumqwzzpwdE2E_aem_CdQ3mG_P_X5d78ZnMV1JdQ)
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/900px-2023_Facebook_icon.svg.png" width="20">          [FACEBOOK](https://www.facebook.com/groups/2402371183273100/posts/swap-face-ch%E1%BB%89-v%E1%BB%9Bi-m%E1%BB%99t-node-l%E1%BA%A5y-c%E1%BA%A3m-h%E1%BB%A9ng-t%E1%BB%AB-instantid-zenid-%C4%91%C6%B0%E1%BB%A3c-t%E1%BA%A1o-ra-ch%E1%BB%89-v%E1%BB%9Bi-v/2866596150183932/?_rdr)
+2. [【ComfyUI工作流】当前最新换脸工作流！ZenID Face Swap插件 部署安装使用简单适合新手使用](https://www.bilibili.com/video/BV1CdkuYyEPd/?spm_id_from=333.999.0.0)
+
+3. [【AI摄影应用课程】【Comfyui】comfyui工作流ZenID，基础工作流大改，实现更加便捷快速的换脸，面部融和，参考父母长相预测孩子长相](https://www.bilibili.com/video/BV1fwkhYcEob/?spm_id_from=333.337.search-card.all.click)
+
+4. [ComfyUI ZenID高融合换脸 参考父母长相预测孩子不同年龄段样貌](https://www.bilibili.com/video/BV1Ank3Y7EPU/)
+
+5. [一个简单快速可用的换脸工作流，使用新插件 ZENID，附工作流](https://www.bilibili.com/video/BV1s8kkYrE9F/)
+
+6. [ComfyUI_ZenID：预测孩子长相（面部融合）工作流整合包，还能指定年龄以及调整更偏向哪一方的长相](https://www.bilibili.com/video/BV1ayqZYUECB/)
+
+### <img src="https://cdn.pixabay.com/photo/2021/06/15/12/28/tiktok-6338429_1280.png" width="40">[Douyin]
+
+1. [设计师学Ai（回归）](https://www.douyin.com/video/7450052025175248162)
+
+2. [Danny](https://www.douyin.com/video/7450052025175248162)
+
+3. [吴杨峰](https://www.douyin.com/video/7450052025175248162)
+
+### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/900px-2023_Facebook_icon.svg.png" width="40">[FACEBOOK]
+1. [Stable Diffusion Viet Nam](https://www.facebook.com/groups/2402371183273100/posts/swap-face-ch%E1%BB%89-v%E1%BB%9Bi-m%E1%BB%99t-node-l%E1%BA%A5y-c%E1%BA%A3m-h%E1%BB%A9ng-t%E1%BB%AB-instantid-zenid-%C4%91%C6%B0%E1%BB%A3c-t%E1%BA%A1o-ra-ch%E1%BB%89-v%E1%BB%9Bi-v/2866596150183932/?_rdr)
+
+2. [Bình Dân Học AI](https://www.facebook.com/groups/binhdanhocai/permalink/593754026446689/)
+
+### WorkFlow Web
+1. [Openart.ai](https://openart.ai/workflows/t8star/zenid/zLFXFt5JTgvxjY6IcYwH)
+
+2. [runninghub.ai](https://www.runninghub.ai/post/1868731191779033089)
+
+3. [Liblib.art](https://www.liblib.art/modelinfo/c5fd923aa45b43a5a20ed3cb08c2e081?versionUuid=d327441153884f249569ea90bd08801b)
+
+### Blog 
+
+1. [[ComfyUI]ZenID：面部融合神器！揭秘基因遗传，提前预测你和她的下一代基因](https://blog.csdn.net/xiaoganbuaiuk/article/details/144468312)
+
+2. [ComfyUI 面部迁移，面部融合，预测宝宝长相，ZenID 插件安装使用](https://blog.csdn.net/haikun/article/details/144566495)
+
+3. [[ComfyUI Tutorial] What will the baby of the future look like? Double photo reveals the genetic code! Face fusion tool!](https://blog.csdn.net/m0_56144365/article/details/144581826)
 
 🎉 Enjoy creating with ZenID! Let us know your feedback or suggestions.
 
