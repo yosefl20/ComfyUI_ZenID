@@ -80,7 +80,7 @@ Check out tutorials, demos, and updates on community's social media channels
 
 1. [ZenID Face Swap｜Generate different ages｜｜ComfyUI｜Workflow Download Installation Setup Tutorial](https://www.youtube.com/watch?v=UnFK-SjkIS0&t=1s)
 
-2. [一个不正经的换脸节点ZenID，居然那么好玩！？FaceAging平替！还可以预测孩子长相哦](https://www.youtube.com/watch?v=d3NMFWHVEiw&t=183s)
+2. [ZenID Fun & Face Aging Alternative｜Predict Your Child’s Appearance!](https://www.youtube.com/watch?v=d3NMFWHVEiw&t=183s)
 
 ###  <img src="https://upload.wikimedia.org/wikipedia/vi/thumb/1/1b/Bi%E1%BB%83u_tr%C6%B0ng_Bilibili.svg/239px-Bi%E1%BB%83u_tr%C6%B0ng_Bilibili.svg.png" width="40">  Bilibili
 
@@ -105,19 +105,19 @@ Check out tutorials, demos, and updates on community's social media channels
 
 3. [吴杨峰](https://www.douyin.com/video/7450052025175248162)
 
-### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/900px-2023_Facebook_icon.svg.png" width="40"> FACEBOOK
+### <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/2023_Facebook_icon.svg/900px-2023_Facebook_icon.svg.png" width="30"> FACEBOOK
 1. [Stable Diffusion Viet Nam](https://www.facebook.com/groups/2402371183273100/posts/swap-face-ch%E1%BB%89-v%E1%BB%9Bi-m%E1%BB%99t-node-l%E1%BA%A5y-c%E1%BA%A3m-h%E1%BB%A9ng-t%E1%BB%AB-instantid-zenid-%C4%91%C6%B0%E1%BB%A3c-t%E1%BA%A1o-ra-ch%E1%BB%89-v%E1%BB%9Bi-v/2866596150183932/?_rdr)
 
 2. [Bình Dân Học AI](https://www.facebook.com/groups/binhdanhocai/permalink/593754026446689/)
 
-### WorkFlow Web
+### 🌐 Workflow Platforms
 1. [Openart.ai](https://openart.ai/workflows/t8star/zenid/zLFXFt5JTgvxjY6IcYwH)
 
 2. [runninghub.ai](https://www.runninghub.ai/post/1868731191779033089)
 
 3. [Liblib.art](https://www.liblib.art/modelinfo/c5fd923aa45b43a5a20ed3cb08c2e081?versionUuid=d327441153884f249569ea90bd08801b)
 
-### Blog 
+### ✍️ Blogs
 
 1. [[ComfyUI]ZenID：面部融合神器！揭秘基因遗传，提前预测你和她的下一代基因](https://blog.csdn.net/xiaoganbuaiuk/article/details/144468312)
 
