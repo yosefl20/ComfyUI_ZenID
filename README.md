@@ -82,6 +82,8 @@ Check out tutorials, demos, and updates on community's social media channels
 
 2. [ZenID Fun & Face Aging Alternative｜Predict Your Child’s Appearance!](https://www.youtube.com/watch?v=d3NMFWHVEiw&t=183s)
 
+3. [The best face swap I have used! Not PuLID! No LoRA Training Required. ComfyUI ZenID](https://www.youtube.com/watch?v=uHU5rtQu4jc&t=1246s)
+
 ###  <img src="https://upload.wikimedia.org/wikipedia/vi/thumb/1/1b/Bi%E1%BB%83u_tr%C6%B0ng_Bilibili.svg/239px-Bi%E1%BB%83u_tr%C6%B0ng_Bilibili.svg.png" width="40">  Bilibili
 
 
