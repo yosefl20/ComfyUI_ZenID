@@ -129,4 +129,8 @@ Check out tutorials, demos, and updates on community's social media channels
 
 🎉 Enjoy creating with ZenID! Let us know your feedback or suggestions.
 
+## Star History 🌟
+
+[![Star History Chart](https://api.star-history.com/svg?repos=vuongminh1907/ComfyUI_ZenID&type=Date)](https://star-history.com/#vuongminh1907/ComfyUI_ZenID&Date)
+
 
