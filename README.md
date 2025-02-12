@@ -132,10 +132,4 @@ Check out tutorials, demos, and updates on community's social media channels
 
 ## 🌟 Star History
 
-<a href="https://star-history.com/#vuongminh1907/ComfyUI_ZenID&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=vuongminh1907/ComfyUI_ZenID&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=vuongminh1907/ComfyUI_ZenID&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=vuongminh1907/ComfyUI_ZenID&type=Date" />
- </picture>
-</a>
+[![Star History Chart](https://api.star-history.com/svg?repos=vuongminh1907/ComfyUI_ZenID&type=Date)](https://star-history.com/#vuongminh1907/ComfyUI_ZenID&Date)
