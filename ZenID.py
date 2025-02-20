@@ -593,10 +593,7 @@ class ZenIDCombineFace:
         if face_embed_2 is None:
             raise Exception('Reference Image: No face detected.')
 
-        if balance < 0.5:
-            face_embed = face_embed_1 * (1 - balance) + face_embed_2 * balance
-        else:
-            face_embed = face_embed_2 * (1 - balance) + face_embed_1 * balance
+        face_embed = face_embed_2 * (1 - balance) + face_embed_1 * balance
 
         ratio = 8.0
         dst = arcface_dst * ratio
