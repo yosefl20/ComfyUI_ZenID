@@ -380,9 +380,9 @@ class ApplyZenID:
     def apply_instantid(self, instantid_file, insightface, control_net, model, clip, vae, image_source, image_face, start_at, end_at, weight=.8,blur_kernel = 51, ip_weight=None, cn_strength=None, noise=0.35, image_kps=None, mask=None, combine_embeds='average'):
         
         #load instantid model
-        if ApplyZenID.INISTANTID_MODEL is None:
-            ApplyZenID.INISTANTID_MODEL = self.load_model(instantid_file)
-        instantid = ApplyZenID.INISTANTID_MODEL
+        if ApplyZenID.INSTANTID_MODEL is None:
+            ApplyZenID.INSTANTID_MODEL = self.load_model(instantid_file)
+        instantid = ApplyZenID.INSTANTID_MODEL
         if ApplyZenID.INSIGHTFACE_MODEL is None:
             ApplyZenID.INSIGHTFACE_MODEL = self.load_insight_face(insightface)
         insightface = ApplyZenID.INSIGHTFACE_MODEL
