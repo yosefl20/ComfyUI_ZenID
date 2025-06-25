@@ -290,6 +290,8 @@ class ApplyZenID:
     RETURN_NAMES = ("MODEL", "positive", "negative", "latent")
     FUNCTION = "apply_instantid"
     CATEGORY = "ZenID"
+    INSTANTID_MODEL = None
+    INSIGHTFACE_MODEL = None
 
     def load_insight_face(self, provider):
         model = FaceAnalysis(name="antelopev2", root=INSIGHTFACE_DIR, providers=[provider + 'ExecutionProvider',]) # alternative to buffalo_l
@@ -378,9 +380,13 @@ class ApplyZenID:
     def apply_instantid(self, instantid_file, insightface, control_net, model, clip, vae, image_source, image_face, start_at, end_at, weight=.8,blur_kernel = 51, ip_weight=None, cn_strength=None, noise=0.35, image_kps=None, mask=None, combine_embeds='average'):
         
         #load instantid model
-        instantid = self.load_model(instantid_file)
-        insightface = self.load_insight_face(insightface)
-        
+        if ApplyZenID.INISTANTID_MODEL is None:
+            ApplyZenID.INISTANTID_MODEL = self.load_model(instantid_file)
+        instantid = ApplyZenID.INISTANTID_MODEL
+        if ApplyZenID.INSIGHTFACE_MODEL is None:
+            ApplyZenID.INSIGHTFACE_MODEL = self.load_insight_face(insightface)
+        insightface = ApplyZenID.INSIGHTFACE_MODEL
+
         #define positive and negative
         positive = " "
         negative = "(lowres, low quality, worst quality:1.2), (text:1.2), watermark, painting, drawing, illustration, glitch, deformed, mutated, cross-eyed, ugly, disfigured (lowres, low quality, worst quality:1.2), (text:1.2), watermark, painting, drawing, illustration, glitch,deformed, mutated, cross-eyed, ugly, disfigured"
